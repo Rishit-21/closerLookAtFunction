@@ -111,6 +111,47 @@ const addVAT2 =addTaxRate(0.23);
 console.log(addVAT2(100));
 console.log(addVAT2(23));
 
+(function (){
+    console.log('this will never run again');
+    const isPrivate = 23;
+})();
+
+(()=> console.log('this will nver run again'))();
+
+let f;
+
+const g = function(){
+    const a = 23;
+    f = function(){
+        console.log(a*2);
+    };
+};
+
+const h = function (){
+    const b = 777;
+    f = function(){
+        console.log(b*2);
+    };
+}
+
+g();
+f();
+h();
+f();
+
+const boardPassengers = function(n,wait){
+    const perGroup = n/3;
+
+    setTimeout(function(){
+        console.log(`We are now boarding all ${n} pasanger`);
+        console.log(`there are 3 group,each with ${perGroup} passanger`);
+    },wait*1000);
+
+    console.log(`Will start boarding in ${wait} seconds`);
+};
+// const perGroup = 1000;
+boardPassengers(180,3);
+
 
 //// coding challange
 const poll = {
@@ -153,7 +194,13 @@ const poll = {
     // poll.registerNewAnswer();
     //poll.displayResults();
     poll.displayResults.call({answers:[5,3,2]});
-  
+
+    //coding challange 2
+
+    document.querySelector('body').addEventListener('click',(function(){
+        const header = document.querySelector('h1');
+        header.style.color = 'blue';
+    }))  
     
     
 
